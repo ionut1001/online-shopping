@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
+
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +16,14 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <title>Online Shopping - ${title}</title>
 <script>
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}';
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -29,6 +31,12 @@
 
 <!-- Bootstrap Litera theme CSS -->
 <link href="${css}/bootstrap-litera-theme.css" rel="stylesheet">
+
+
+<!-- Bootstrap DataTables CSS -->
+<link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
+
+<link href="${css}/fontawesome.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -60,6 +68,11 @@
 			<c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
 				<%@include file="listProducts.jsp" %>
 			</c:if>
+			
+			<!-- Load this only when user clicks Show Product -->
+			<c:if test="${userClickShowProduct==true}">
+				<%@include file="singleProduct.jsp" %>
+			</c:if>
 		</div>
 
 		<!-- Footer -->
@@ -68,7 +81,13 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
-
+		
+		<!-- DataTable plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		<script src="${js}/dataTables.bootstrap4.js"></script>
+		
+		<script src="${js}/fontawesome.js" data-auto-replace-svg="nest"></script>
+		
 		<!-- self coded javascript -->
 		<script src="${js}/myapp.js"></script>
 

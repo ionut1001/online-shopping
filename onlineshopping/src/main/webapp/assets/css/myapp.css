@@ -51,3 +51,24 @@ footer {
     margin-left: auto;
 }
 
+.dataTableImg {
+	width: 100px;
+	height: 100px;	
+}
+
+.image-box {
+    position: relative;
+    float: left;
+    width:  200px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+
+    margin:6px 6px;
+    border: 4px solid #eee;
+    box-shadow:#555 1px 1px 8px 1px;
+    cursor: pointer;
+
+}
+
