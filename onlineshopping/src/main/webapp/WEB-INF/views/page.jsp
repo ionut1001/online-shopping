@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -16,7 +15,7 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -73,6 +72,11 @@
 			<c:if test="${userClickShowProduct==true}">
 				<%@include file="singleProduct.jsp" %>
 			</c:if>
+			
+			<!-- Load this only when user clicks Manage Product -->
+			<c:if test="${userClickManageProducts==true}">
+				<%@include file="manageProducts.jsp" %>
+			</c:if>
 		</div>
 
 		<!-- Footer -->
@@ -87,6 +91,8 @@
 		<script src="${js}/dataTables.bootstrap4.js"></script>
 		
 		<script src="${js}/fontawesome.js" data-auto-replace-svg="nest"></script>
+		<script src="${js}/bootbox.min.js"></script>
+		<script src="${js}/jquery.validate.js"></script>
 		
 		<!-- self coded javascript -->
 		<script src="${js}/myapp.js"></script>

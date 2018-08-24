@@ -13,6 +13,12 @@
   		<param-name>throwExceptionIfNoHandlerFound</param-name>
   		<param-value>true</param-value>
   	</init-param>
+  	
+  	<multipart-config>
+  		<max-file-size>2097152</max-file-size>				<!-- 1024*1024*2 = 2 MB -->
+  		<max-request-size>4194304</max-request-size>		<!-- 1024*1024*4 = 4 MB -->
+  		<file-size-threshold>1048576</file-size-threshold>	<!-- 1024*1024*1 = 1 MB -->
+  	</multipart-config>
   </servlet>
   
     <servlet-mapping>
