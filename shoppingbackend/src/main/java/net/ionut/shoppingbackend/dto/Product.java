@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,9 +36,12 @@ public class Product
 	private String description;
 	
 	@Column(name="unit_price")
+	@NotNull(message="Please enter the Price!")
 	@Min(value=1, message="The price cannot be less than 1!")
 	private double unitPrice;
 	
+	@NotNull(message="Please enter the Quantity!")
+	@Min(value=0, message="The quantity cannot be less than 0!")
 	private int quantity;
 	
 	@Column(name="is_active")

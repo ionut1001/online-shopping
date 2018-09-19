@@ -12,6 +12,7 @@
 	<properties>
 		<javaee.version>8.0</javaee.version>
 		<spring.version>5.0.8.RELEASE</spring.version>
+		<spring.security.version>5.0.7.RELEASE</spring.security.version>
 	</properties>
 	<dependencies>
 
@@ -40,6 +41,31 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- SPRING WEBFLOW dependency -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.5.0.RELEASE</version>
+		</dependency>
+
+		<!-- Spring SECURITY -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		
+
 		<!-- JSTL dependency -->
 		<dependency>
 			<groupId>jstl</groupId>
@@ -66,7 +92,7 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-		
+
 		<!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>

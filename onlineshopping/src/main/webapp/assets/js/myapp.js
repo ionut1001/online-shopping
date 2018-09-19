@@ -20,6 +20,16 @@ $(function() {
 		break;
 	}
 	
+	//to tackle the csrf token
+	var token = $('meta[name="_csrf"').attr('content');
+	var header = $('meta[name="_csrf_header"').attr('content');
+	if(token && header && token.length > 0 && header.length > 0)
+	{
+		//set the token header for the ajax request
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+	}
 	
 	//code for jquery dataTable
 	
@@ -81,13 +91,20 @@ $(function() {
 					mRender: (data, type, row) => {
 						var str = '';
 						str += '<a href="' + window.contextRoot + '/show/' + data + '/product"><i class="far fa-eye"></i></a>&nbsp;&nbsp;&nbsp;';
-						if(row.quantity<1)
+						if(window.userRole == 'ADMIN')
 						{
-							str += '<a href="javascript: void(0)"><i class="fas fa-cart-plus" style="color: grey; cursor: not-allowed"></i></a>';
+							str += '<a href="' + window.contextRoot + '/manage/' + data + '/product"><i class="fas fa-pencil-alt" style="color:red"></i></a>';
 						}
 						else
 						{
-							str += '<a href="' + window.contextRoot + '/cart/add/' + data + '/product"><i class="fas fa-cart-plus"></i></a>';							
+							if(row.quantity<1)
+							{
+								str += '<a href="javascript: void(0)"><i class="fas fa-cart-plus" style="color: grey; cursor: not-allowed"></i></a>';
+							}
+							else
+							{
+								str += '<a href="' + window.contextRoot + '/cart/add/' + data + '/product"><i class="fas fa-cart-plus"></i></a>';
+							}
 						}
 						return str;
 					}
@@ -247,7 +264,8 @@ let $adminProductsTable = $('#adminProductsTable');
 		});
 	}
 	
-	//validation code for category
+	//-----------------------------------------
+	//validation code for category form
 	var $categoryForm = $("#categoryForm");
 	if($categoryForm.length)
 	{
@@ -268,6 +286,40 @@ let $adminProductsTable = $('#adminProductsTable');
 				},
 				description: {
 					required: 'Please add a description for this category!'
+				}
+			},
+			errorElement: 'em',
+			errorPlacement: function (error, element) {
+				//add the class of help-block
+				error.addClass('help-block');
+				//add the error element after the input element
+				error.insertAfter(element);
+			}
+		})
+	}
+	
+	//-----------------------------------------------
+	//validation code for login form
+	var $categoryForm = $("#loginForm");
+	if($categoryForm.length)
+	{
+		$categoryForm.validate({
+			rules: {
+				username: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true
+				}
+			},
+			messages: {
+				username: {
+					required: 'Please enter the user name!',
+					email: 'Please enter valid email address!'
+				},
+				password: {
+					required: 'Please enter the password!'
 				}
 			},
 			errorElement: 'em',

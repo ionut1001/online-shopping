@@ -44,7 +44,7 @@ public class CategoryTestCase
 	{
 		category = categoryDAO.get(1);
 
-		assertEquals("successfully fetched a single category from table", "Television", category.getName());
+		assertEquals("successfully fetched a single category from table", "Laptop", category.getName());
 	}
 	
 	@Test

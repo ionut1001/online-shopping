@@ -28,6 +28,7 @@
 			<h4>Price: <strong>&euro; ${product.unitPrice} /-</strong></h4>
 			<hr>
 			
+			<security:authorize access="hasAuthority('USER') or isAnonymous()">
 			<c:choose>
 				<c:when test="${product.quantity<1}">
 					<h6>Qty. Available: <font color="red">Out of Stock!</font></h6>
@@ -39,9 +40,16 @@
 					<h6>Qty. Available: ${product.quantity}</h6>
 					<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
 						<i class="fas fa-cart-plus"></i>Add To Cart
-					</a>	
+					</a>
 				</c:otherwise>
 			</c:choose>
+			</security:authorize>
+			
+			<security:authorize access="hasAuthority('ADMIN')">
+				<a href="${contextRoot}/manage/${product.id}/product" class="btn btn-warning">
+					<i class="fas fa-pencil-alt" style="color:red"></i>Edit
+				</a>
+			</security:authorize>
 			
 			<%-- <a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
 				<span><i class="fas fa-cart-plus"></i>Add To Cart</span>

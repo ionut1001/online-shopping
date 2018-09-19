@@ -23,13 +23,14 @@
 		<div class="col-md-offset-2 col-md-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h4>Product Management</h4>
+					<h4>Product Management<c:if test="${not empty product.name}"> : #${product.id}</c:if></h4>
 				</div>
 				<div class="panel-body">
 					<!-- Form elements -->
 					<sf:form class="form-horizonatal" modelAttribute="product"
 						action="${contextRoot}/manage/products" method="POST"
 						enctype="multipart/form-data">
+						
 
 						<%-- <div class="form-group row">
 							<label class="control-label col-md-3" for="code">Product Code</label>
@@ -74,7 +75,8 @@
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="quantity">Quantity Available</label>
 							<div class="col-md-9">
-								<sf:input type="number" path="quantity" id="quantity" placeholder="Quantity Available" class="form-control" />
+								<sf:input type="number" path="quantity" id="quantity" placeholder="Quantity Available" class="form-control"/>
+								<sf:errors path="quantity" cssClass="help-block" element="em"></sf:errors>
 							</div>
 						</div>
 
@@ -140,8 +142,8 @@
 					<tr>
 						<th>Id</th>
 						<th>&#160;</th>
-						<th>Brand</th>
 						<th>Name</th>
+						<th>Brand</th>
 						<th>Quantity</th>
 						<th>Unit Price</th>
 						<th>Active</th>
@@ -153,8 +155,8 @@
 					<tr>
 						<th>Id</th>
 						<th>&#160;</th>
-						<th>Brand</th>
 						<th>Name</th>
+						<th>Brand</th>
 						<th>Quantity</th>
 						<th>Unit Price</th>
 						<th>Active</th>
